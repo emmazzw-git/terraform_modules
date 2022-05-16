@@ -38,6 +38,14 @@ resource "aws_iam_role" "this" {
   name                = "${var.name}-role"
   assume_role_policy  = data.aws_iam_policy_document.assume_role_policy.json
   managed_policy_arns = local.defaultLambdaPolicies
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to tags, e.g. because a management agent
+      # updates these based on some ruleset managed elsewhere.
+      managed_policy_arns
+    ]
+  }
 }
 
 resource "aws_iam_policy" "this" {
