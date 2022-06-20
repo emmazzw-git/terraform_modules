@@ -32,6 +32,7 @@ resource "aws_lambda_function" "this" {
   runtime          = var.runtime
   source_code_hash = filebase64sha256(var.lambdaFilename)
   timeout          = var.timeout
+  tags             = var.tags
   tracing_config {
     mode = "Active"
   }
