@@ -80,3 +80,8 @@ variable "handler" {
   description = "The Lambda Handler"
   default     = "function.lambda_handler"
 }
+
+variable "tags" {
+  type    = map(string)
+  default = null
+}
