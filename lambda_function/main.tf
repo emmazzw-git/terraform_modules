@@ -17,6 +17,14 @@ resource "aws_lambda_function" "this" {
       variables = var.environment_variables
     }
   }
+
+  dynamic "dead_letter_config" {
+    for_each = var.dead_letter_config == null ? [] : [var.dead_letter_config]
+    content {
+      target_arn = dead_letter_config.value.target_arn
+    }
+  }
+  
   filename         = var.lambdaFilename
   handler          = var.handler
   layers           = local.layers

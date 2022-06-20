@@ -24,6 +24,13 @@ variable "environment_variables" {
   default     = {}
 }
 
+variable "dead_letter_config" {
+  type = object({
+    target_arn = string
+  })
+  default = null
+}
+
 variable "runtime" {
   type        = string
   description = "The lambda function runtime"
