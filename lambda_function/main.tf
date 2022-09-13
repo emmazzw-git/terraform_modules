@@ -1,6 +1,5 @@
 resource "aws_lambda_layer_version" "this" {
   layer_name               = "${var.name}_dependencies"
-  compatible_architectures = [var.architecture]
   compatible_runtimes      = [var.runtime]
   description              = "Dependencies for ${var.name} Lambda Function"
   filename                 = var.layerFilename
